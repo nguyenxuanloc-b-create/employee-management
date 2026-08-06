@@ -19,3 +19,10 @@ Sau đó truy cập:
 ```text
 http://localhost:8080/hello
 ```
+
+## Module 2 - Custom Bean & IoC
+
+- `UtilityService` duoc Spring quan ly bang `@Service`.
+- `PasswordEncoder` la custom bean khai bao trong `@Configuration`.
+- Dung constructor injection de inject cac bean vao controller.
+- API demo: `/api/tools/sample-code`, `/api/tools/format-name`, `/api/tools/hash`.
