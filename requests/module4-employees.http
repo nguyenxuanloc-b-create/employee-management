@@ -1,0 +1,62 @@
+### Create employee 1
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "nguyen van an",
+  "email": "an@example.com",
+  "department": {
+    "name": "IT"
+  }
+}
+
+### Create employee 2
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "tran thi binh",
+  "email": "binh@example.com",
+  "department": {
+    "name": "HR"
+  }
+}
+
+### Create employee 3
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "le van cuong",
+  "email": "cuong@example.com",
+  "department": {
+    "name": "Finance"
+  }
+}
+
+### Create employee 4
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "pham thi dung",
+  "email": "dung@example.com",
+  "department": {
+    "name": "Marketing"
+  }
+}
+
+### Create employee 5
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "hoang minh duc",
+  "email": "duc@example.com",
+  "department": {
+    "name": "IT"
+  }
+}
+
+### Get all employees
+GET http://localhost:8080/api/employees

@@ -33,3 +33,11 @@ http://localhost:8080/hello
 - Nhan du lieu bang `@RequestBody`, `@PathVariable`, `@RequestParam`.
 - Dung `ResponseEntity` de chu dong HTTP status.
 - Du lieu nhan vien dang luu in-memory de tap trung vao REST truoc khi hoc database.
+
+## Module 4 - Spring Boot + Database (Spring Data JPA)
+
+- Them Spring Data JPA, H2 cho moi truong hoc nhanh va MySQL driver de trien khai that.
+- Entity `Employee`, `Department` voi quan he nhieu nhan vien - mot phong ban.
+- Repository ke thua `JpaRepository`.
+- CRUD nhan vien voi database.
+- Tim nhan vien theo ten hoac phong ban bang derived query.
