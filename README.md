@@ -26,3 +26,10 @@ http://localhost:8080/hello
 - `PasswordEncoder` la custom bean khai bao trong `@Configuration`.
 - Dung constructor injection de inject cac bean vao controller.
 - API demo: `/api/tools/sample-code`, `/api/tools/format-name`, `/api/tools/hash`.
+
+## Module 3 - Basic REST API
+
+- `@RestController`, `@RequestMapping`, `@GetMapping`, `@PostMapping`.
+- Nhan du lieu bang `@RequestBody`, `@PathVariable`, `@RequestParam`.
+- Dung `ResponseEntity` de chu dong HTTP status.
+- Du lieu nhan vien dang luu in-memory de tap trung vao REST truoc khi hoc database.
