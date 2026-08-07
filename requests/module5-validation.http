@@ -1,0 +1,76 @@
+### Create employee 1
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "nguyen van an",
+  "email": "an@example.com",
+  "departmentName": "IT"
+}
+
+### Create employee 2
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "tran thi binh",
+  "email": "binh@example.com",
+  "departmentName": "HR"
+}
+
+### Get all employees
+GET http://localhost:8080/api/employees
+
+### Search employees
+GET http://localhost:8080/api/employees?keyword=IT
+
+### Get employee by id
+GET http://localhost:8080/api/employees/1
+
+### Update employee 1
+PUT http://localhost:8080/api/employees/1
+Content-Type: application/json
+
+{
+  "name": "nguyen van an updated",
+  "email": "an.updated@example.com",
+  "departmentName": "Engineering"
+}
+
+### Validation error: blank name and invalid email
+POST http://localhost:8080/api/employees
+Content-Type: application/json  
+
+{
+  "name": "",
+  "email": "invalid-email",
+  "departmentName": "IT"
+}
+
+### Validation error: missing department
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "le van cuong",
+  "email": "cuong@example.com"
+}
+
+### Bad request: duplicated email
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": "another employee",
+  "email": "an@example.com",
+  "departmentName": "IT"
+}
+
+### Not found
+GET http://localhost:8080/api/employees/999
+
+### Delete employee 1
+DELETE http://localhost:8080/api/employees/1
+
+### Not found after delete
+GET http://localhost:8080/api/employees/1

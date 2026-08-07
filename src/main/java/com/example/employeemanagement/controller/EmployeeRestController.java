@@ -1,8 +1,10 @@
 package com.example.employeemanagement.controller;
 
+import com.example.employeemanagement.dto.EmployeeRequest;
+import com.example.employeemanagement.dto.EmployeeResponse;
 import com.example.employeemanagement.entity.Employee;
 import com.example.employeemanagement.service.EmployeeService;
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,29 +30,34 @@ public class EmployeeRestController {
     }
 
     @GetMapping
-    public List<Employee> findAll(@RequestParam(required = false) String keyword) {
-        return employeeService.findAll(keyword);
+    public List<EmployeeResponse> findAll(@RequestParam(required = false) String keyword) {
+        return employeeService.findAll(keyword).stream()
+                .map(EmployeeResponse::from)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Employee findById(@PathVariable Long id) {
-        return employeeService.findById(id);
+    public EmployeeResponse findById(@PathVariable Long id) {
+        return EmployeeResponse.from(employeeService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Employee> create(@RequestBody Employee request) {
+    public ResponseEntity<EmployeeResponse> create(@Valid @RequestBody EmployeeRequest request) {
         Employee created = employeeService.create(request);
-        return ResponseEntity.created(URI.create("/api/employees/" + created.getId())).body(created);
+        return ResponseEntity.created(URI.create("/api/employees/" + created.getId()))
+                .body(EmployeeResponse.from(created));
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable Long id, @RequestBody Employee request) {
-        return employeeService.update(id, request);
+    public EmployeeResponse update(
+            @PathVariable Long id,
+            @Valid @RequestBody EmployeeRequest request) {
+        return EmployeeResponse.from(employeeService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         employeeService.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 }

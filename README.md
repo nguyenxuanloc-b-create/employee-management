@@ -41,3 +41,11 @@ http://localhost:8080/hello
 - Repository ke thua `JpaRepository`.
 - CRUD nhan vien voi database.
 - Tim nhan vien theo ten hoac phong ban bang derived query.
+
+## Module 5 - Validation & Exception Handling
+
+- Bean Validation voi `@NotBlank`, `@Size`, `@Email`.
+- Controller dung `@Valid` de kiem tra request truoc khi xu ly.
+- `EmployeeNotFoundException` cho truong hop khong tim thay nhan vien.
+- `@RestControllerAdvice` xu ly loi tap trung va tra JSON loi ro rang.
+- DTO request/response giup tach REST API khoi JPA entity.

@@ -5,9 +5,7 @@ Content-Type: application/json
 {
   "name": "nguyen van an",
   "email": "an@example.com",
-  "department": {
-    "name": "IT"
-  }
+  "departmentName": "IT"
 }
 
 ### Create employee 2
@@ -17,9 +15,7 @@ Content-Type: application/json
 {
   "name": "tran thi binh",
   "email": "binh@example.com",
-  "department": {
-    "name": "HR"
-  }
+  "departmentName": "HR"
 }
 
 ### Create employee 3
@@ -29,9 +25,7 @@ Content-Type: application/json
 {
   "name": "le van cuong",
   "email": "cuong@example.com",
-  "department": {
-    "name": "Finance"
-  }
+  "departmentName": "Finance"
 }
 
 ### Create employee 4
@@ -41,9 +35,7 @@ Content-Type: application/json
 {
   "name": "pham thi dung",
   "email": "dung@example.com",
-  "department": {
-    "name": "Marketing"
-  }
+  "departmentName": "Marketing"
 }
 
 ### Create employee 5
@@ -53,10 +45,27 @@ Content-Type: application/json
 {
   "name": "hoang minh duc",
   "email": "duc@example.com",
-  "department": {
-    "name": "IT"
-  }
+  "departmentName": "IT"
 }
 
 ### Get all employees
+GET http://localhost:8080/api/employees
+
+### Get employee by id
+GET http://localhost:8080/api/employees/1
+
+### Update employee 1
+PUT http://localhost:8080/api/employees/1
+Content-Type: application/json
+
+{
+  "name": "nguyen van an updated",
+  "email": "an.updated@example.com",
+  "departmentName": "Engineering"
+}
+
+### Delete employee 1
+DELETE http://localhost:8080/api/employees/1
+
+### Get all employees after delete
 GET http://localhost:8080/api/employees
