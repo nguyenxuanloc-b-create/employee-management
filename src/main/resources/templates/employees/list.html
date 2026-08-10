@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employees</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="container">
+    <div class="toolbar">
+        <div>
+            <h1>Employee Management</h1>
+            <p>Spring Boot + JPA + Thymeleaf</p>
+        </div>
+        <a class="button" th:href="@{/employees/add}">+ Add employee</a>
+    </div>
+
+    <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+    <form class="search" th:action="@{/employees/list}" method="get">
+        <input type="search" name="keyword" th:value="${keyword}"
+               placeholder="Search name or department">
+        <button type="submit">Search</button>
+        <a th:href="@{/employees/list}">Clear</a>
+    </form>
+
+    <div class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.department.name}"></td>
+                <td class="actions">
+                    <a th:href="@{/employees/{id}/edit(id=${employee.id})}">Edit</a>
+                    <form th:action="@{/employees/{id}/delete(id=${employee.id})}" method="post">
+                        <button class="link danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(employees)}">
+                <td colspan="5">No employees found.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

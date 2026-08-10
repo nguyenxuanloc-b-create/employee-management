@@ -49,3 +49,11 @@ http://localhost:8080/hello
 - `EmployeeNotFoundException` cho truong hop khong tim thay nhan vien.
 - `@RestControllerAdvice` xu ly loi tap trung va tra JSON loi ro rang.
 - DTO request/response giup tach REST API khoi JPA entity.
+
+## Module 6 - Spring Boot Web (MVC + Thymeleaf)
+
+- Them `spring-boot-starter-thymeleaf`.
+- `EmployeeMvcController` minh hoa Controller + Model + View.
+- Trang `/employees/list`: xem danh sach va tim kiem theo ten/phong ban.
+- Trang `/employees/add`: them nhan vien bang HTML form + data binding.
+- Bo sung edit/delete de hoan thien CRUD tren giao dien web.
