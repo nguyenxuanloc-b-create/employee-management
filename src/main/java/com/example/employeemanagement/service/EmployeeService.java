@@ -6,6 +6,8 @@ import com.example.employeemanagement.entity.Employee;
 import com.example.employeemanagement.exception.EmployeeNotFoundException;
 import com.example.employeemanagement.repository.DepartmentRepository;
 import com.example.employeemanagement.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,8 @@ import java.util.List;
 @Service
 @Transactional
 public class EmployeeService {
+
+    private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
@@ -45,17 +49,23 @@ public class EmployeeService {
     public Employee create(EmployeeRequest request) {
         Employee employee = new Employee();
         applyRequest(employee, request);
-        return employeeRepository.save(employee);
+        Employee saved = employeeRepository.save(employee);
+        log.info("Created employee id={} email={}", saved.getId(), saved.getEmail());
+        return saved;
     }
 
     public Employee update(Long id, EmployeeRequest request) {
         Employee employee = findById(id);
         applyRequest(employee, request);
-        return employeeRepository.save(employee);
+        Employee saved = employeeRepository.save(employee);
+        log.info("Updated employee id={} email={}", saved.getId(), saved.getEmail());
+        return saved;
     }
 
     public void delete(Long id) {
-        employeeRepository.delete(findById(id));
+        Employee employee = findById(id);
+        employeeRepository.delete(employee);
+        log.info("Deleted employee id={} email={}", employee.getId(), employee.getEmail());
     }
 
     private void applyRequest(Employee employee, EmployeeRequest request) {

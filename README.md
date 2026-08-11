@@ -57,3 +57,10 @@ http://localhost:8080/hello
 - Trang `/employees/list`: xem danh sach va tim kiem theo ten/phong ban.
 - Trang `/employees/add`: them nhan vien bang HTML form + data binding.
 - Bo sung edit/delete de hoan thien CRUD tren giao dien web.
+
+## Module 7 - Logging & Profiles
+
+- Logging bang SLF4J/Logback khi them, sua, xoa nhan vien.
+- Profile `dev`: H2 in-memory de chay ngay khi hoc.
+- Profile `prod`: MySQL, lay URL/user/password tu bien moi truong.
+- Chon profile bang `SPRING_PROFILES_ACTIVE=dev|prod`.
