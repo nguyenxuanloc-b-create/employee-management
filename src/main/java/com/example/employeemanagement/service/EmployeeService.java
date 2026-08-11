@@ -8,6 +8,7 @@ import com.example.employeemanagement.repository.DepartmentRepository;
 import com.example.employeemanagement.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +47,7 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
+    @CacheEvict(value = {"employeeSummary", "employeeStatistics"}, allEntries = true)
     public Employee create(EmployeeRequest request) {
         Employee employee = new Employee();
         applyRequest(employee, request);
@@ -54,6 +56,7 @@ public class EmployeeService {
         return saved;
     }
 
+    @CacheEvict(value = {"employeeSummary", "employeeStatistics"}, allEntries = true)
     public Employee update(Long id, EmployeeRequest request) {
         Employee employee = findById(id);
         applyRequest(employee, request);
@@ -62,6 +65,7 @@ public class EmployeeService {
         return saved;
     }
 
+    @CacheEvict(value = {"employeeSummary", "employeeStatistics"}, allEntries = true)
     public void delete(Long id) {
         Employee employee = findById(id);
         employeeRepository.delete(employee);

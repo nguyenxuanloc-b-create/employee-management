@@ -64,3 +64,11 @@ http://localhost:8080/hello
 - Profile `dev`: H2 in-memory de chay ngay khi hoc.
 - Profile `prod`: MySQL, lay URL/user/password tu bien moi truong.
 - Chon profile bang `SPRING_PROFILES_ACTIVE=dev|prod`.
+
+## Module 8 - Advanced Spring Boot
+
+- Spring Boot Actuator: `/actuator/health`, `/actuator/metrics`.
+- `@Scheduled`: log `System running` moi 30 giay.
+- `@EnableCaching` + Caffeine cache.
+- API `/api/reports/summary` cache ket qua trong 1 phut.
+- Khi them/sua/xoa nhan vien, cache bao cao duoc xoa de tranh du lieu cu.
