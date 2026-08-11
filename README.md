@@ -72,3 +72,31 @@ http://localhost:8080/hello
 - `@EnableCaching` + Caffeine cache.
 - API `/api/reports/summary` cache ket qua trong 1 phut.
 - Khi them/sua/xoa nhan vien, cache bao cao duoc xoa de tranh du lieu cu.
+
+## Module 9 - Spring Security Basics
+
+- Spring Security Starter + custom `UserDetailsService` doc user tu database.
+- Hai role: `ADMIN` va `USER`.
+- Form Login va HTTP Basic cho bai hoc authentication co ban.
+- JWT Bearer token co ban bang Spring Security Resource Server + `JwtEncoder`/`JwtDecoder`.
+- `USER`: duoc xem danh sach nhan vien.
+- `ADMIN`: duoc them/sua/xoa nhan vien va truy cap actuator day du.
+
+### Tai khoan dev
+
+- `admin / admin123` - role ADMIN
+- `user / user123` - role USER
+
+### Lay JWT
+
+```http
+POST /api/auth/token
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+```
+
+Sau do gui token qua header `Authorization: Bearer <token>`.

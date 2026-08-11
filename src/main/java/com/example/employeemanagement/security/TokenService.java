@@ -1,0 +1,48 @@
+package com.example.employeemanagement.security;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.JwsHeader;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+
+@Service
+public class TokenService {
+
+    private final JwtEncoder jwtEncoder;
+
+    public TokenService(JwtEncoder jwtEncoder) {
+        this.jwtEncoder = jwtEncoder;
+    }
+
+    public TokenResponse createToken(Authentication authentication) {
+        Instant now = Instant.now();
+        List<String> roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .filter(authority -> authority.startsWith("ROLE_"))
+                .map(authority -> authority.substring(5))
+                .toList();
+
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("employee-management")
+                .issuedAt(now)
+                .expiresAt(now.plus(1, ChronoUnit.HOURS))
+                .subject(authentication.getName())
+                .claim("roles", roles)
+                .build();
+
+        JwsHeader header = JwsHeader.with(MacAlgorithm.HS256).build();
+        String token = jwtEncoder.encode(JwtEncoderParameters.from(header, claims)).getTokenValue();
+        return new TokenResponse(token, "Bearer", 3600);
+    }
+
+    public record TokenResponse(String accessToken, String tokenType, long expiresInSeconds) {
+    }
+}

@@ -19,3 +19,8 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+
+app:
+  jwt:
+    # Development fallback only. Set JWT_SECRET in real deployments.
+    secret: ${JWT_SECRET:U3ByaW5nQm9vdC1FbXBsb3llZS1NYW5hZ2VtZW50LTIwMjYhISE=}
