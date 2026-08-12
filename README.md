@@ -100,3 +100,10 @@ Content-Type: application/json
 ```
 
 Sau do gui token qua header `Authorization: Bearer <token>`.
+
+## Module 10 - Reporting & Analytics
+
+- `@Query` trong `EmployeeRepository` de thong ke so nhan vien theo phong ban.
+- API `/api/reports/statistics` tra tong so nhan vien va ty le phan bo theo phong ban.
+- Trang Thymeleaf `/employees/statistics` hien thi bao cao dang bang.
+- Ket qua thong ke duoc cache trong 1 phut va tu xoa cache khi CRUD nhan vien.

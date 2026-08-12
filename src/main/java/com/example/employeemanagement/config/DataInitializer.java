@@ -23,10 +23,12 @@ public class DataInitializer {
             AppUserRepository userRepository,
             PasswordEncoder passwordEncoder) {
         return args -> {
-            if (userRepository.count() == 0) {
-                userRepository.save(new AppUser("admin", passwordEncoder.encode("admin123"), "ADMIN"));
-                userRepository.save(new AppUser("user", passwordEncoder.encode("user123"), "USER"));
-            }
+            userRepository.findByUsername("admin")
+                    .orElseGet(() -> userRepository.save(
+                            new AppUser("admin", passwordEncoder.encode("admin123"), "ADMIN")));
+            userRepository.findByUsername("user")
+                    .orElseGet(() -> userRepository.save(
+                            new AppUser("user", passwordEncoder.encode("user123"), "USER")));
 
             if (employeeRepository.count() == 0) {
                 Department it = departmentRepository.findByNameIgnoreCase("IT")

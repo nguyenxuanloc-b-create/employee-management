@@ -19,4 +19,9 @@ public class ReportRestController {
     public ReportService.EmployeeSummary summary() {
         return reportService.getSummary();
     }
+
+    @GetMapping("/statistics")
+    public ReportService.EmployeeStatistics statistics() {
+        return reportService.getStatistics();
+    }
 }

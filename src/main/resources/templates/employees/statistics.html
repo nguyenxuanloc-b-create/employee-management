@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Statistics</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="container">
+    <a th:href="@{/employees/list}">Back to employees</a>
+    <h1>Employee Statistics</h1>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <span>Total employees</span>
+            <strong th:text="${statistics.totalEmployees}">0</strong>
+        </div>
+        <div class="stat-card">
+            <span>Departments represented</span>
+            <strong th:text="${#lists.size(statistics.departments)}">0</strong>
+        </div>
+    </section>
+
+    <div class="card">
+        <h2>Employees by department</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Department</th>
+                <th>Employees</th>
+                <th>Share</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${statistics.departments}">
+                <td th:text="${item.departmentName}">IT</td>
+                <td th:text="${item.employeeCount}">0</td>
+                <td th:text="${#numbers.formatDecimal(item.percentage, 1, 1) + '%'}">0%</td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(statistics.departments)}">
+                <td colspan="3">No data available.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

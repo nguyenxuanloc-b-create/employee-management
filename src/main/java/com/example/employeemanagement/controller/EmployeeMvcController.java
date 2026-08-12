@@ -3,6 +3,7 @@ package com.example.employeemanagement.controller;
 import com.example.employeemanagement.dto.EmployeeRequest;
 import com.example.employeemanagement.entity.Employee;
 import com.example.employeemanagement.service.EmployeeService;
+import com.example.employeemanagement.service.ReportService;
 import com.example.employeemanagement.web.EmployeeForm;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EmployeeMvcController {
 
     private final EmployeeService employeeService;
+    private final ReportService reportService;
 
-    public EmployeeMvcController(EmployeeService employeeService) {
+    public EmployeeMvcController(EmployeeService employeeService, ReportService reportService) {
         this.employeeService = employeeService;
+        this.reportService = reportService;
     }
 
     @GetMapping({"", "/list"})
@@ -31,6 +34,12 @@ public class EmployeeMvcController {
         model.addAttribute("employees", employeeService.findAll(keyword));
         model.addAttribute("keyword", keyword == null ? "" : keyword);
         return "employees/list";
+    }
+
+    @GetMapping("/statistics")
+    public String statistics(Model model) {
+        model.addAttribute("statistics", reportService.getStatistics());
+        return "employees/statistics";
     }
 
     @GetMapping("/add")

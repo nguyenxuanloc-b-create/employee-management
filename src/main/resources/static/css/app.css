@@ -22,3 +22,8 @@ th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e5e7eb; }
 .field-error { color: #dc2626; font-size: .9rem; font-weight: 400; }
 .alert { padding: 12px 14px; border-radius: 8px; margin: 16px 0; }
 .success { background: #dcfce7; color: #166534; }
+.toolbar-actions { display: flex; align-items: center; gap: 14px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.stat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 3px 14px rgba(0,0,0,.06); }
+.stat-card span { display: block; color: #6b7280; margin-bottom: 8px; }
+.stat-card strong { font-size: 2rem; }
